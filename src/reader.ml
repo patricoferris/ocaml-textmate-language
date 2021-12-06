@@ -18,13 +18,13 @@ let get_list f = function
   | _ -> error "Type error: Expected list."
 
 let compile_regex re =
-  match
-    Oniguruma.create
+  try
+     Re.Posix.re re
+    (* Oniguruma.create
       re Oniguruma.Options.none
-      Oniguruma.Encoding.utf8 Oniguruma.Syntax.default
+      Oniguruma.Encoding.utf8 Oniguruma.Syntax.default *)
   with
-  | Error msg -> error (re ^ ": " ^ msg)
-  | Ok re -> re
+  | Failure msg -> error (re ^ ": " ^ msg)
 
 let rec get_captures acc = function
   | [] -> acc

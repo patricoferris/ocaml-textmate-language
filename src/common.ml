@@ -5,7 +5,7 @@ type capture = {
   capture_patterns : rule list;
 }
 
-and regex = Oniguruma.Encoding.utf8 Oniguruma.t
+and regex = Re.t
 
 and match_ = {
   name : string option;
